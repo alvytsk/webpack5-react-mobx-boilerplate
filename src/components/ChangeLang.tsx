@@ -1,17 +1,23 @@
-import React, { FunctionComponent } from "react";
+import React, { FunctionComponent, useState } from "react";
 import { observer } from "mobx-react";
 import store from "./LangStore";
 
 const ChangeLang: FunctionComponent = () => {
+  function handleDropdownChange(e: any) {
+    store.changeLang(e.target.value);
+  }
+
   return (
     <>
-      <button
-        onClick={() => {
-          store.changeLang();
-        }}
+      <select
+        name="langs"
+        id="lang-select"
+        onChange={handleDropdownChange}
+        defaultValue={store.lang}
       >
-        {store.lang === "ru" ? "RU -> EN" : "EN -> RU"}
-      </button>
+        <option value="ru">RU</option>
+        <option value="en">EN</option>
+      </select>
     </>
   );
 };

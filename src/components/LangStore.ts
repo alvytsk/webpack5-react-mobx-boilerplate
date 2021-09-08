@@ -7,8 +7,8 @@ class LangStore {
     makeAutoObservable(this);
   }
 
-  changeLang() {
-    this.lang = this.lang === "ru" ? "en" : "ru";
+  changeLang(lang: string) {
+    this.lang = lang;
   }
 }
 
