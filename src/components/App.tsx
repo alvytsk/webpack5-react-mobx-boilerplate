@@ -1,17 +1,28 @@
 import React from "react";
 import "./App.less";
 import Counter from "./Counter";
+import ChangeLang from "./ChangeLang";
+import tr from "../intl/tr";
+import { I18nProvider, LOCALES } from "../intl";
+import store from "./LangStore";
+import { observer } from "mobx-react";
 
 const App = () => {
   return (
-    <div className="app">
-      Welcome to Webpack5 React Mobx Boilerplate!
-      {/* <p />
-      <img src="assets/recoil.png" height={200} /> */}
-      <p />
-      <Counter />
-    </div>
+    <I18nProvider
+      key={store.lang}
+      locale={store.lang === "ru" ? LOCALES.RU : LOCALES.EN}
+    >
+      <div className="app">
+        {tr("title")}
+        <p />
+        <Counter />
+
+        <p />
+        <ChangeLang />
+      </div>
+    </I18nProvider>
   );
 };
 
-export default App;
+export default observer(App);
